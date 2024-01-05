@@ -2,7 +2,6 @@ package org.xuanluan.mc.sdk.authenticate.service.impl;
 
 import com.xuanluan.mc.sdk.generate.service.jwt.JwtRSAProvider;
 import com.xuanluan.mc.sdk.generate.utils.KeyPairUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.util.Assert;
@@ -17,7 +16,7 @@ import java.util.function.Supplier;
 public class CurrentUserServiceImpl implements ICurrentUserService {
     private final PublicKey publicKey;
 
-    public CurrentUserServiceImpl(@Value("${jwt.secret.login.public}") String publicKey) {
+    public CurrentUserServiceImpl(String publicKey) {
         this.publicKey = KeyPairUtils.publicKey(publicKey);
     }
 
