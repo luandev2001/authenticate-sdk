@@ -17,7 +17,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-public abstract class PermissionFilter extends AuthenticationFilter {
+public abstract class PermissionFilter extends MultipleTenantFilter {
     private final ICurrentUserService currentUserService;
     @Getter
     private CurrentUser currentUser;

@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public abstract class AuthenticationFilter extends BaseProcessFilter {
+public abstract class MultipleTenantFilter extends BaseProcessFilter {
     private final ICurrentClientService currentClientService;
     private final TenantIdentifierResolver tenantIdentifierResolver;
 
     private String clientId;
 
-    protected AuthenticationFilter(ObjectMapper objectMapper, ICurrentClientService currentClientService, TenantIdentifierResolver tenantIdentifierResolver) {
+    protected MultipleTenantFilter(ObjectMapper objectMapper, ICurrentClientService currentClientService, TenantIdentifierResolver tenantIdentifierResolver) {
         super(objectMapper);
         this.currentClientService = currentClientService;
         this.tenantIdentifierResolver = tenantIdentifierResolver;
