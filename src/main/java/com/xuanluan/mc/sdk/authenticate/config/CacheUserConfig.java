@@ -1,4 +1,4 @@
-package org.xuanluan.mc.sdk.authenticate.config;
+package com.xuanluan.mc.sdk.authenticate.config;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,14 +1,14 @@
-package org.xuanluan.mc.sdk.authenticate.service.impl;
+package com.xuanluan.mc.sdk.authenticate.service.impl;
 
+import com.xuanluan.mc.sdk.authenticate.service.constant.CacheNameConstant;
 import com.xuanluan.mc.sdk.service.ITenantService;
 import com.xuanluan.mc.sdk.service.tenant.ITenantProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.util.Assert;
-import org.xuanluan.mc.sdk.authenticate.domain.model.CurrentClient;
-import org.xuanluan.mc.sdk.authenticate.service.ICurrentClientService;
-import org.xuanluan.mc.sdk.authenticate.service.constant.CacheNameConstant;
+import com.xuanluan.mc.sdk.authenticate.domain.model.CurrentClient;
+import com.xuanluan.mc.sdk.authenticate.service.ICurrentClientService;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package org.xuanluan.mc.sdk.authenticate.filter;
+package com.xuanluan.mc.sdk.authenticate.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xuanluan.mc.sdk.domain.model.WrapperResponse;
