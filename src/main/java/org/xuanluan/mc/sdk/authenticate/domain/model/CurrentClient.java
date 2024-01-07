@@ -8,5 +8,4 @@ import lombok.Setter;
 public class CurrentClient {
     private String id;
     private String name;
-    private boolean isActive;
 }

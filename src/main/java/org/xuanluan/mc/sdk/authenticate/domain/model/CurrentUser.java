@@ -7,9 +7,8 @@ import java.util.Collection;
 
 @Getter
 @Setter
-public class CurrentUserSession {
+public class CurrentUser {
     private String orgId;
     private String username;
     private Collection<GrantedAuthority> authorities;
-    private boolean isActive;
 }
