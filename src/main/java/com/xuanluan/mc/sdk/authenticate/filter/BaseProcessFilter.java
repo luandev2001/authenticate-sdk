@@ -19,13 +19,13 @@ public abstract class BaseProcessFilter extends OncePerRequestFilter {
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException {
         try {
             process(request);
             filterChain.doFilter(request, response);
         } catch (Exception e) {
-            handleInvalid(response, e.getMessage());
             processError(request, response);
+            handleInvalid(response, e.getMessage());
         }
     }
 

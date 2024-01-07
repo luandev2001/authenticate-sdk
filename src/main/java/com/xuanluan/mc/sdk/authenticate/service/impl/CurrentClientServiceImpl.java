@@ -2,6 +2,7 @@ package com.xuanluan.mc.sdk.authenticate.service.impl;
 
 import com.xuanluan.mc.sdk.authenticate.service.constant.CacheNameConstant;
 import com.xuanluan.mc.sdk.service.ITenantService;
+import com.xuanluan.mc.sdk.service.constant.BaseConstant;
 import com.xuanluan.mc.sdk.service.tenant.ITenantProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;
@@ -28,7 +29,7 @@ public class CurrentClientServiceImpl implements ICurrentClientService {
         CurrentClient currentClient = clientSupplier.get();
         Assert.notNull(currentClient, "client must not null");
         //not exists schema => migrate schema and add to array schema
-        if (!getSchemas().contains(id)) {
+        if (!getSchemas().contains(id) && !BaseConstant.clientId.equals(id)) {
             tenantProvider.create(id);
             schemas.add(id);
         }

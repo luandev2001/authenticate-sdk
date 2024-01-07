@@ -7,13 +7,11 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.caffeine.CaffeineCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 
 import java.util.concurrent.TimeUnit;
 
 @Configuration
 @EnableCaching
-@PropertySource(value = {"classpath:/cache.properties"})
 public class CacheUserConfig {
 
     @Value("${cache.user.expire_time:120}")
