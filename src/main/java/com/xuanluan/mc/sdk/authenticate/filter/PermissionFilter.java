@@ -44,11 +44,9 @@ public abstract class PermissionFilter extends MultipleTenantFilter {
             if (!noAuthorityRequired().test(request)) {
                 String token = request.getHeader(getAuthorizationHeader());
                 //validate token
-                Claims claims = JwtRSAProvider.decode(token, getPublicKey());
-                String username = claims.getSubject();
-                Assert.isTrue(StringUtils.hasText(username), "username must not be blank");
-                this.currentUser = currentUserService.get(getClientId(), token, () -> processCurrentUser().apply(username));
-                Assert.isTrue(authorityRequired().test(request),"you do not have authority access to the request");
+                JwtRSAProvider.decode(token, getPublicKey());
+                this.currentUser = currentUserService.get(getClientId(), token, () -> processCurrentUser().apply(token));
+                Assert.isTrue(authorityRequired().test(request), "you do not have authority access to the request");
             }
         };
     }
