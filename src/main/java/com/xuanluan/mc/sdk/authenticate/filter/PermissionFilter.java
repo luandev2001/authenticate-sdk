@@ -5,7 +5,6 @@ import com.xuanluan.mc.sdk.authenticate.service.ICurrentClientService;
 import com.xuanluan.mc.sdk.generate.service.jwt.JwtRSAProvider;
 import com.xuanluan.mc.sdk.service.tenant.TenantIdentifierResolver;
 import com.xuanluan.mc.sdk.utils.StringUtils;
-import io.jsonwebtoken.Claims;
 import lombok.Getter;
 import org.springframework.util.Assert;
 import com.xuanluan.mc.sdk.authenticate.domain.model.CurrentUser;
@@ -20,7 +19,7 @@ import java.util.function.Predicate;
 public abstract class PermissionFilter extends MultipleTenantFilter {
     private final ICurrentUserService currentUserService;
     @Getter
-    private CurrentUser currentUser;
+    private CurrentUser currentUser = new CurrentUser();
 
     protected PermissionFilter(ObjectMapper objectMapper, ICurrentClientService currentClientService, TenantIdentifierResolver tenantIdentifierResolver, ICurrentUserService currentUserService) {
         super(objectMapper, currentClientService, tenantIdentifierResolver);

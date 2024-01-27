@@ -6,5 +6,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class GrantedAuthority {
-    private String authority;
+    private String role;
 }
