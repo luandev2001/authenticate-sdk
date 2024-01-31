@@ -2,7 +2,6 @@ package com.xuanluan.mc.sdk.authenticate.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xuanluan.mc.sdk.authenticate.domain.model.CurrentClient;
-import com.xuanluan.mc.sdk.authenticate.service.ICurrentClientService;
 import com.xuanluan.mc.sdk.service.constant.BaseConstant;
 import com.xuanluan.mc.sdk.service.tenant.TenantIdentifierResolver;
 import com.xuanluan.mc.sdk.utils.StringUtils;
@@ -13,14 +12,12 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 public abstract class MultipleTenantFilter extends BaseProcessFilter {
-    private final ICurrentClientService currentClientService;
     private final TenantIdentifierResolver tenantIdentifierResolver;
 
     private String clientId;
 
-    protected MultipleTenantFilter(ObjectMapper objectMapper, ICurrentClientService currentClientService, TenantIdentifierResolver tenantIdentifierResolver) {
+    protected MultipleTenantFilter(ObjectMapper objectMapper, TenantIdentifierResolver tenantIdentifierResolver) {
         super(objectMapper);
-        this.currentClientService = currentClientService;
         this.tenantIdentifierResolver = tenantIdentifierResolver;
     }
 
@@ -35,7 +32,7 @@ public abstract class MultipleTenantFilter extends BaseProcessFilter {
         Assert.isTrue(StringUtils.hasText(getTenantHeader()), "tenant header must not be blank");
 
         setClientId(request.getHeader(getTenantHeader()));
-        CurrentClient currentClient = currentClientService.get(clientId, () -> processCurrentClient().apply(clientId));
+        CurrentClient currentClient = processCurrentClient().apply(clientId);
         //switch tenant
         tenantIdentifierResolver.setCurrentTenant(currentClient.getId());
         afterSwitchTenant().accept(request);
