@@ -7,7 +7,6 @@ import com.xuanluan.mc.sdk.utils.StringUtils;
 import lombok.Getter;
 import org.springframework.util.Assert;
 import com.xuanluan.mc.sdk.authenticate.domain.model.CurrentUser;
-import com.xuanluan.mc.sdk.authenticate.service.ICurrentUserService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.PublicKey;
@@ -15,14 +14,12 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+@Getter
 public abstract class PermissionFilter extends MultipleTenantFilter {
-    private final ICurrentUserService currentUserService;
-    @Getter
     private CurrentUser currentUser = new CurrentUser();
 
-    protected PermissionFilter(ObjectMapper objectMapper, TenantIdentifierResolver tenantIdentifierResolver, ICurrentUserService currentUserService) {
+    protected PermissionFilter(ObjectMapper objectMapper, TenantIdentifierResolver tenantIdentifierResolver) {
         super(objectMapper, tenantIdentifierResolver);
-        this.currentUserService = currentUserService;
     }
 
     protected abstract String getAuthorizationHeader();
@@ -43,7 +40,7 @@ public abstract class PermissionFilter extends MultipleTenantFilter {
                 String token = request.getHeader(getAuthorizationHeader());
                 //validate token
                 JwtRSAProvider.decode(token, getPublicKey());
-                this.currentUser = currentUserService.get(getClientId(), token, () -> processCurrentUser().apply(token));
+                this.currentUser = processCurrentUser().apply(token);
                 Assert.isTrue(authorityRequired().test(request), "you do not have authority access to the request");
             }
         };
