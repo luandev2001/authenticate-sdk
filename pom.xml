@@ -16,7 +16,7 @@
     <version>1.0.0</version>
 
     <properties>
-        <generate-sdk.version>1.1.3</generate-sdk.version>
+        <generate-sdk.version>1.2.0</generate-sdk.version>
 
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
