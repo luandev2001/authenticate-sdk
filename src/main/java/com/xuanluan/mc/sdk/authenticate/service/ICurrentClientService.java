@@ -1,6 +1,6 @@
-package org.xuanluan.mc.sdk.authenticate.service;
+package com.xuanluan.mc.sdk.authenticate.service;
 
-import org.xuanluan.mc.sdk.authenticate.domain.model.CurrentClient;
+import com.xuanluan.mc.sdk.authenticate.domain.model.CurrentClient;
 
 import java.util.function.Supplier;
 

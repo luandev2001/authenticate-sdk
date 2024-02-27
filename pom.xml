@@ -11,13 +11,12 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>org.xuanluan.mc</groupId>
+    <groupId>com.xuanluan.mc</groupId>
     <artifactId>authenticate-sdk</artifactId>
     <version>1.0.0</version>
 
     <properties>
-        <service.sdk.version>2.0.0</service.sdk.version>
-        <generate-sdk.version>1.1.2</generate-sdk.version>
+        <generate-sdk.version>1.2.0</generate-sdk.version>
 
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
