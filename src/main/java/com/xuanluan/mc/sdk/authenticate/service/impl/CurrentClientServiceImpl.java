@@ -1,8 +1,6 @@
 package com.xuanluan.mc.sdk.authenticate.service.impl;
 
 import com.xuanluan.mc.sdk.authenticate.service.constant.CacheNameConstant;
-import com.xuanluan.mc.sdk.service.ITenantService;
-import com.xuanluan.mc.sdk.service.constant.BaseConstant;
 import com.xuanluan.mc.sdk.service.tenant.ITenantProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;
@@ -18,10 +16,8 @@ import java.util.function.Supplier;
 @RequiredArgsConstructor
 @CacheConfig(cacheNames = CacheNameConstant.currentClient)
 public class CurrentClientServiceImpl implements ICurrentClientService {
-    private final ITenantService tenantService;
     private final ITenantProvider tenantProvider;
-
-    private Set<String> schemas;
+    private final Set<String> schemas = new HashSet<>();
 
     @Cacheable(key = "#id")
     @Override
@@ -29,17 +25,10 @@ public class CurrentClientServiceImpl implements ICurrentClientService {
         CurrentClient currentClient = clientSupplier.get();
         Assert.notNull(currentClient, "client must not null");
         //not exists schema => migrate schema and add to array schema
-        if (!getSchemas().contains(id) && !BaseConstant.clientId.equals(id)) {
+        if (!schemas.contains(id)) {
             tenantProvider.create(id);
             schemas.add(id);
         }
         return currentClient;
-    }
-
-    private Set<String> getSchemas() {
-        if (schemas == null) {
-            schemas = new HashSet<>(tenantService.getSchemas());
-        }
-        return schemas;
     }
 }
