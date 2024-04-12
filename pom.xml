@@ -13,7 +13,7 @@
 
     <groupId>com.xuanluan.mc</groupId>
     <artifactId>authenticate-sdk</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 
     <properties>
         <generate-sdk.version>1.2.1</generate-sdk.version>

@@ -22,10 +22,15 @@ public class CurrentClientServiceImpl implements ICurrentClientService {
     @Cacheable(key = "#id")
     @Override
     public CurrentClient get(String id, Supplier<CurrentClient> clientSupplier) {
+        return get(id, clientSupplier, false);
+    }
+
+    @Cacheable(key = "#id")
+    public CurrentClient get(String id, Supplier<CurrentClient> clientSupplier, boolean isMigrate) {
         CurrentClient currentClient = clientSupplier.get();
         Assert.notNull(currentClient, "client must not null");
         //not exists schema => migrate schema and add to array schema
-        if (!schemas.contains(id)) {
+        if (isMigrate && !schemas.contains(id)) {
             tenantProvider.create(id);
             schemas.add(id);
         }
