@@ -43,6 +43,6 @@ public abstract class MultipleTenantFilter extends BaseProcessFilter {
     }
 
     private void setClientId(String clientId) {
-        this.clientId = StringUtils.hasText(clientId) ? clientId : BaseConstant.clientId;
+        this.clientId = StringUtils.hasText(clientId) ? clientId : BaseConstant.CLIENT_ID;
     }
 }

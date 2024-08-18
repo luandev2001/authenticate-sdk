@@ -1,8 +1,7 @@
 package com.xuanluan.mc.sdk.authenticate.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.xuanluan.mc.sdk.domain.model.WrapperResponse;
-import org.springframework.http.HttpStatus;
+import com.xuanluan.mc.sdk.model.WrapperResponse;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -35,7 +34,6 @@ public abstract class BaseProcessFilter extends OncePerRequestFilter {
     private void handleInvalid(HttpServletResponse response, String message) throws IOException {
         WrapperResponse<Object> serviceData =
                 WrapperResponse.builder()
-                        .status(HttpStatus.INTERNAL_SERVER_ERROR)
                         .message(message)
                         .build();
 
