@@ -12,7 +12,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 public abstract class MultipleTenantFilter extends BaseProcessFilter {
-    private final ITenantIdentifierResolver tenantIdentifierResolver;
+    protected final ITenantIdentifierResolver tenantIdentifierResolver;
 
     private String clientId;
 
