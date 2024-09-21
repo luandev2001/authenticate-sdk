@@ -3,7 +3,7 @@ package com.xuanluan.mc.sdk.authenticate.filter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xuanluan.mc.sdk.authenticate.domain.model.CurrentClient;
 import com.xuanluan.mc.sdk.service.constant.BaseConstant;
-import com.xuanluan.mc.sdk.service.tenant.TenantIdentifierResolver;
+import com.xuanluan.mc.sdk.service.tenant.ITenantIdentifierResolver;
 import com.xuanluan.mc.sdk.utils.StringUtils;
 import org.springframework.util.Assert;
 
@@ -12,11 +12,11 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 public abstract class MultipleTenantFilter extends BaseProcessFilter {
-    private final TenantIdentifierResolver tenantIdentifierResolver;
+    protected final ITenantIdentifierResolver tenantIdentifierResolver;
 
     private String clientId;
 
-    protected MultipleTenantFilter(ObjectMapper objectMapper, TenantIdentifierResolver tenantIdentifierResolver) {
+    protected MultipleTenantFilter(ObjectMapper objectMapper, ITenantIdentifierResolver tenantIdentifierResolver) {
         super(objectMapper);
         this.tenantIdentifierResolver = tenantIdentifierResolver;
     }
@@ -43,6 +43,6 @@ public abstract class MultipleTenantFilter extends BaseProcessFilter {
     }
 
     private void setClientId(String clientId) {
-        this.clientId = StringUtils.hasText(clientId) ? clientId : BaseConstant.clientId;
+        this.clientId = StringUtils.hasText(clientId) ? clientId : BaseConstant.CLIENT_ID;
     }
 }

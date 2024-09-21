@@ -13,10 +13,10 @@
 
     <groupId>com.xuanluan.mc</groupId>
     <artifactId>authenticate-sdk</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
 
     <properties>
-        <generate-sdk.version>1.2.1</generate-sdk.version>
+        <service-sdk.version>2.2.0</service-sdk.version>
 
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -27,8 +27,8 @@
         <!--    sub libs   -->
         <dependency>
             <groupId>com.xuanluan.mc</groupId>
-            <artifactId>generate-sdk</artifactId>
-            <version>${generate-sdk.version}</version>
+            <artifactId>service-sdk</artifactId>
+            <version>${service-sdk.version}</version>
         </dependency>
 
         <!--Others-->
