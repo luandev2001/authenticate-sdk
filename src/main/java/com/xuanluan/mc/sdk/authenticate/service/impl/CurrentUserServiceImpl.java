@@ -21,7 +21,10 @@ public class CurrentUserServiceImpl implements ICurrentUserService {
 
         String cacheKey = String.format("%s:%s", clientId, token);
         CurrentUser currentUser = getCache().get(cacheKey, CurrentUser.class);
-        if (currentUser != null) getCache().put(cacheKey, userSupplier.get());
+        if (currentUser == null) {
+            currentUser = userSupplier.get();
+            getCache().put(cacheKey, currentUser);
+        }
         return currentUser;
     }
 
