@@ -15,11 +15,11 @@ public class CurrentUserServiceImpl implements ICurrentUserService {
     private final CacheManager cacheManager;
 
     @Override
-    public CurrentUser putIfAbsent(String clientId, String token, Supplier<CurrentUser> userSupplier) {
-        Assert.notNull(clientId, "client must not null");
+    public CurrentUser putIfAbsent(String tenant, String token, Supplier<CurrentUser> userSupplier) {
+        Assert.notNull(tenant, "tenant must not null");
         Assert.notNull(token, "token must not null");
 
-        String cacheKey = String.format("%s:%s", clientId, token);
+        String cacheKey = String.format("%s:%s", tenant, token);
         CurrentUser currentUser = getCache().get(cacheKey, CurrentUser.class);
         if (currentUser == null) {
             currentUser = userSupplier.get();

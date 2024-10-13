@@ -1,6 +1,5 @@
 package com.xuanluan.mc.sdk.authenticate.filter;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xuanluan.mc.sdk.service.tenant.ITenantIdentifierResolver;
 import com.xuanluan.mc.sdk.utils.JwtUtils;
 import com.xuanluan.mc.sdk.utils.StringUtils;
@@ -18,8 +17,8 @@ import java.util.function.Predicate;
 public abstract class PermissionFilter extends MultipleTenantFilter {
     private CurrentUser currentUser = new CurrentUser();
 
-    protected PermissionFilter(ObjectMapper objectMapper, ITenantIdentifierResolver tenantIdentifierResolver) {
-        super(objectMapper, tenantIdentifierResolver);
+    protected PermissionFilter(ITenantIdentifierResolver tenantIdentifierResolver) {
+        super(tenantIdentifierResolver);
     }
 
     protected abstract String getAuthorizationHeader();
