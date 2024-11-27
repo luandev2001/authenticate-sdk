@@ -1,6 +1,6 @@
 package com.xuanluan.mc.sdk.authenticate.service.imp;
 
-import com.xuanluan.mc.sdk.authenticate.domain.model.CurrentUser;
+import com.xuanluan.mc.sdk.authenticate.model.CurrentUser;
 import com.xuanluan.mc.sdk.authenticate.service.ICurrentUserService;
 import com.xuanluan.mc.sdk.authenticate.service.constant.CacheNameConstant;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +11,7 @@ import org.springframework.util.Assert;
 import java.util.function.Supplier;
 
 @RequiredArgsConstructor
-public class CurrentUserServiceImpl implements ICurrentUserService {
+public class CurrentUserServiceImp implements ICurrentUserService {
     private final CacheManager cacheManager;
 
     @Override

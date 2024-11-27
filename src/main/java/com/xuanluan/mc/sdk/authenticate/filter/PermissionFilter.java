@@ -4,7 +4,7 @@ import com.xuanluan.mc.sdk.service.tenant.ITenantIdentifierResolver;
 import com.xuanluan.mc.sdk.utils.StringUtils;
 import lombok.Getter;
 import org.springframework.util.Assert;
-import com.xuanluan.mc.sdk.authenticate.domain.model.CurrentUser;
+import com.xuanluan.mc.sdk.authenticate.model.CurrentUser;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.PublicKey;
