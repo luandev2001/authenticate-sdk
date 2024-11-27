@@ -12,5 +12,5 @@ public class CurrentUser {
     private String orgId;
     private String username;
     private String email;
-    private Map<String, GrantedAuthority> userRoles;
+    private Map<String, Map<String, Object>> userRoles;
 }

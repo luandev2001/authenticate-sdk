@@ -1,7 +1,6 @@
 package com.xuanluan.mc.sdk.authenticate.filter;
 
 import com.xuanluan.mc.sdk.service.tenant.ITenantIdentifierResolver;
-import com.xuanluan.mc.sdk.utils.JwtUtils;
 import com.xuanluan.mc.sdk.utils.StringUtils;
 import lombok.Getter;
 import org.springframework.util.Assert;
@@ -14,8 +13,8 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 @Getter
-public abstract class PermissionFilter extends MultipleTenantFilter {
-    private CurrentUser currentUser = new CurrentUser();
+public abstract class PermissionFilter<T extends CurrentUser> extends MultipleTenantFilter {
+    protected T currentUser;
 
     protected PermissionFilter(ITenantIdentifierResolver tenantIdentifierResolver) {
         super(tenantIdentifierResolver);
@@ -29,7 +28,7 @@ public abstract class PermissionFilter extends MultipleTenantFilter {
 
     protected abstract PublicKey getPublicKey();
 
-    protected abstract Function<String, CurrentUser> processCurrentUser();
+    protected abstract Function<String, T> processCurrentUser();
 
     protected Consumer<HttpServletRequest> afterSwitchTenant() {
         return (request) -> {
@@ -37,8 +36,6 @@ public abstract class PermissionFilter extends MultipleTenantFilter {
 
             if (!noAuthorityRequired().test(request)) {
                 String token = request.getHeader(getAuthorizationHeader());
-                //validate token
-                JwtUtils.decode(token, getPublicKey());
                 this.currentUser = processCurrentUser().apply(token);
                 Assert.isTrue(authorityRequired().test(request), "you do not have authority access to the request");
             }

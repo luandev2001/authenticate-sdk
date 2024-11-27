@@ -1,6 +1,5 @@
 package com.xuanluan.mc.sdk.authenticate.filter;
 
-import com.xuanluan.mc.sdk.model.WrapperResponse;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;

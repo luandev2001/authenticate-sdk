@@ -1,4 +1,4 @@
-package com.xuanluan.mc.sdk.authenticate.service.impl;
+package com.xuanluan.mc.sdk.authenticate.service.imp;
 
 import com.xuanluan.mc.sdk.authenticate.domain.model.CurrentUser;
 import com.xuanluan.mc.sdk.authenticate.service.ICurrentUserService;
