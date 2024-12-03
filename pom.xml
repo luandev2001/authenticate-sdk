@@ -16,7 +16,7 @@
     <version>1.0.3</version>
 
     <properties>
-        <service-sdk.version>2.2.1</service-sdk.version>
+        <service-sdk.version>2.3.0</service-sdk.version>
 
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
