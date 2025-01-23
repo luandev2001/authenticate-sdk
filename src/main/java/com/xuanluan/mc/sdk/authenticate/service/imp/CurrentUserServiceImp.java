@@ -1,6 +1,6 @@
-package com.xuanluan.mc.sdk.authenticate.service.impl;
+package com.xuanluan.mc.sdk.authenticate.service.imp;
 
-import com.xuanluan.mc.sdk.authenticate.domain.model.CurrentUser;
+import com.xuanluan.mc.sdk.authenticate.model.CurrentUser;
 import com.xuanluan.mc.sdk.authenticate.service.ICurrentUserService;
 import com.xuanluan.mc.sdk.authenticate.service.constant.CacheNameConstant;
 import lombok.RequiredArgsConstructor;
@@ -11,17 +11,20 @@ import org.springframework.util.Assert;
 import java.util.function.Supplier;
 
 @RequiredArgsConstructor
-public class CurrentUserServiceImpl implements ICurrentUserService {
+public class CurrentUserServiceImp implements ICurrentUserService {
     private final CacheManager cacheManager;
 
     @Override
-    public CurrentUser putIfAbsent(String clientId, String token, Supplier<CurrentUser> userSupplier) {
-        Assert.notNull(clientId, "client must not null");
+    public CurrentUser putIfAbsent(String tenant, String token, Supplier<CurrentUser> userSupplier) {
+        Assert.notNull(tenant, "tenant must not null");
         Assert.notNull(token, "token must not null");
 
-        String cacheKey = String.format("%s:%s", clientId, token);
+        String cacheKey = String.format("%s:%s", tenant, token);
         CurrentUser currentUser = getCache().get(cacheKey, CurrentUser.class);
-        if (currentUser != null) getCache().put(cacheKey, userSupplier.get());
+        if (currentUser == null) {
+            currentUser = userSupplier.get();
+            getCache().put(cacheKey, currentUser);
+        }
         return currentUser;
     }
 

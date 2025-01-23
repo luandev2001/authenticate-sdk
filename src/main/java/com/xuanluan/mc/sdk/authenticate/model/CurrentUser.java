@@ -1,4 +1,4 @@
-package com.xuanluan.mc.sdk.authenticate.domain.model;
+package com.xuanluan.mc.sdk.authenticate.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,5 +12,5 @@ public class CurrentUser {
     private String orgId;
     private String username;
     private String email;
-    private Map<String, GrantedAuthority> userRoles;
+    private Map<String, Object> userRoles;
 }
